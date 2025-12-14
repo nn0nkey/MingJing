@@ -429,28 +429,4 @@ DELETE /history/{id}
 - [TailwindCSS](https://tailwindcss.com/) - CSS 框架
 
 ---
-
-## 📞 联系方式
-
-- 作者: [Your Name]
-- 邮箱: [your.email@example.com]
-- 项目主页: [https://github.com/your-username/mingjing](https://github.com/your-username/mingjing)
-
----
-
-## 🗺️ 路线图
-
-- [x] 基础识别功能
-- [x] 自动脱敏功能
-- [x] 历史记录管理
-- [x] 规则管理
-- [x] Docker 部署
-- [ ] 用户认证系统
-- [ ] 批量文件脱敏
-- [ ] PDF 报告生成
-- [ ] 暗黑模式
-- [ ] 移动端优化
-
----
-
 **如果觉得有用，请给个 ⭐ Star！**
