@@ -202,13 +202,18 @@ cd mingjing
 ## 📸 界面预览
 
 ### 敏感信息识别
-![识别界面](docs/images/analyze.png)
+<img width="1692" height="844" alt="image" src="https://github.com/user-attachments/assets/3e7fab88-5d14-4946-b629-fc3446ce8301" />
+
+<img width="1712" height="1144" alt="image" src="https://github.com/user-attachments/assets/044413d0-cd5e-424f-a0d0-514ffcb80bc5" />
+
 
 ### 自动脱敏
-![脱敏界面](docs/images/anonymize.png)
+<img width="2496" height="1092" alt="image" src="https://github.com/user-attachments/assets/12d99b06-4da8-46a0-bdbe-7dc955bbfc03" />
+
 
 ### 历史记录
-![历史记录](docs/images/history.png)
+
+<img width="2784" height="1246" alt="image" src="https://github.com/user-attachments/assets/bf54e08e-9e6c-46a7-b9d4-88608064a64f" />
 
 ---
 
