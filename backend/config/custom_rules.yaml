@@ -1,0 +1,366 @@
+custom_rules:
+- name: 内部工号
+  entity_type: EMPLOYEE_ID
+  patterns:
+  - regex: (?<![A-Za-z0-9])[A-Z]{2,3}\d{5,8}(?![A-Za-z0-9])
+    name: 工号-字母数字
+    score: 0.5
+  context:
+  - 工号
+  - 员工编号
+  - 员工号
+  enabled: true
+- name: 内部订单号
+  entity_type: ORDER_ID
+  patterns:
+  - regex: (?<![A-Za-z0-9])ORD\d{12,16}(?![A-Za-z0-9])
+    name: 订单号
+    score: 0.5
+  context:
+  - 订单
+  - 订单号
+  - 订单编号
+  enabled: true
+- name: 通用API密钥
+  entity_type: API_KEY
+  patterns:
+  - regex: (?i)(?:api[_-]?key|apikey|api[_-]?secret)[\s:=]+['"]?([A-Za-z0-9_\-]{20,64})['"]?
+    name: API密钥键值对
+    score: 0.7
+  context:
+  - api
+  - key
+  - secret
+  - token
+  enabled: true
+- name: 私钥内容
+  entity_type: PRIVATE_KEY
+  patterns:
+  - regex: '-----BEGIN (?:RSA |EC |DSA |OPENSSH )?PRIVATE KEY-----'
+    name: 私钥头部
+    score: 0.95
+  context:
+  - private
+  - key
+  - 密钥
+  enabled: true
+- name: 数据库连接
+  entity_type: DB_CONNECTION
+  patterns:
+  - regex: (?i)(?:mysql|postgresql|mongodb|redis)://[^\s]+
+    name: 数据库URL
+    score: 0.8
+  - regex: (?i)(?:host|server)\s*[=:]\s*[^\s;,]+
+    name: 数据库主机
+    score: 0.5
+  context:
+  - 数据库
+  - 连接
+  - database
+  - connection
+  enabled: true
+- name: 阿里云AccessKey
+  entity_type: ALIYUN_ACCESS_KEY
+  patterns:
+  - regex: (?<![A-Za-z0-9])LTAI[A-Za-z0-9]{12,20}(?![A-Za-z0-9])
+    name: 阿里云AK
+    score: 0.9
+  context:
+  - 阿里云
+  - 阿里
+  - aliyun
+  - alibaba
+  - AccessKey
+  - AccessKeyId
+  - access_key
+  - access_key_id
+  - ak
+  - 密钥
+  - 访问密钥
+  - 云服务
+  - OSS
+  - ECS
+  - RDS
+  enabled: true
+- name: 腾讯云SecretId
+  entity_type: TENCENT_SECRET_ID
+  patterns:
+  - regex: (?<![A-Za-z0-9])AKID[A-Za-z0-9]{32}(?![A-Za-z0-9])
+    name: 腾讯云SecretId
+    score: 0.9
+  context:
+  - 腾讯云
+  - 腾讯
+  - tencent
+  - qcloud
+  - SecretId
+  - SecretKey
+  - secret_id
+  - secret_key
+  - 密钥
+  - 访问密钥
+  - 云服务
+  - COS
+  - CVM
+  - TencentDB
+  - API密钥
+  enabled: true
+- name: AWS访问密钥
+  entity_type: AWS_ACCESS_KEY
+  patterns:
+  - regex: (?<![A-Za-z0-9])AKIA[A-Z0-9]{16}(?![A-Za-z0-9])
+    name: AWS AccessKey
+    score: 0.9
+  - regex: (?i)aws_secret_access_key[\s:=]+['"]?([A-Za-z0-9/+=]{40})['"]?
+    name: AWS SecretKey
+    score: 0.85
+  context:
+  - aws
+  - amazon
+  - 亚马逊
+  - 亚马逊云
+  - access_key
+  - secret_key
+  - access key
+  - secret key
+  - 访问密钥
+  - 秘密密钥
+  - credentials
+  - 凭证
+  - S3
+  - EC2
+  - IAM
+  - boto3
+  enabled: true
+- name: GitHub Token
+  entity_type: GITHUB_TOKEN
+  patterns:
+  - regex: (?<![A-Za-z0-9])ghp_[A-Za-z0-9]{36}(?![A-Za-z0-9])
+    name: GitHub Personal Token
+    score: 0.95
+  - regex: (?<![A-Za-z0-9])gho_[A-Za-z0-9]{36}(?![A-Za-z0-9])
+    name: GitHub OAuth Token
+    score: 0.95
+  - regex: (?<![A-Za-z0-9])ghs_[A-Za-z0-9]{36}(?![A-Za-z0-9])
+    name: GitHub Server Token
+    score: 0.95
+  context:
+  - github
+  - git
+  - token
+  - 令牌
+  - pat
+  - personal access token
+  - 个人访问令牌
+  - oauth
+  - 授权
+  - authentication
+  - 认证
+  - repository
+  - 仓库
+  - API
+  - webhook
+  enabled: true
+- name: Slack Token
+  entity_type: SLACK_TOKEN
+  patterns:
+  - regex: xox[baprs]-[0-9]{10,13}-[0-9]{10,13}-[A-Za-z0-9]{24,32}
+    name: Slack Token
+    score: 0.9
+  context:
+  - slack
+  - token
+  - 令牌
+  - webhook
+  - bot
+  - 机器人
+  - workspace
+  - 工作区
+  - channel
+  - 频道
+  - integration
+  - 集成
+  - API
+  - oauth
+  enabled: true
+- name: 微信AppSecret
+  entity_type: WECHAT_APP_SECRET
+  patterns:
+  - regex: (?i)(?:appsecret|app_secret)[\s:=]+['"]?([a-f0-9]{32})['"]?
+    name: 微信AppSecret
+    score: 0.8
+  context:
+  - 微信
+  - wechat
+  - weixin
+  - appsecret
+  - app_secret
+  - 小程序
+  - 公众号
+  - 企业微信
+  - 开放平台
+  - appid
+  - 应用密钥
+  - 密钥
+  - secret
+  - 开发者
+  enabled: true
+- name: JWT Token
+  entity_type: JWT_TOKEN
+  patterns:
+  - regex: eyJ[A-Za-z0-9_-]{10,}\.eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}
+    name: JWT格式
+    score: 0.85
+  context:
+  - jwt
+  - token
+  - 令牌
+  - bearer
+  - authorization
+  - 授权
+  - authentication
+  - 认证
+  - access token
+  - 访问令牌
+  - refresh token
+  - 刷新令牌
+  - session
+  - 会话
+  - login
+  - 登录
+  enabled: true
+- name: 支付宝商户号
+  entity_type: ALIPAY_MERCHANT_ID
+  patterns:
+  - regex: (?<![0-9])20[0-9]{14}(?![0-9])
+    name: 支付宝PID
+    score: 0.7
+  context:
+  - 支付宝
+  - alipay
+  - 商户号
+  - 商户
+  - partner
+  - pid
+  - 合作伙伴
+  - 支付
+  - payment
+  - 收款
+  - 账号
+  - merchant
+  - 应用
+  - app
+  enabled: true
+- name: 快递单号
+  entity_type: EXPRESS_NUMBER
+  patterns:
+  - regex: (?<![A-Za-z0-9])[A-Z]{2}\d{10,13}(?![A-Za-z0-9])
+    name: 通用快递单号
+    score: 0.6
+  - regex: (?<![0-9])7[0-9]{11}(?![0-9])
+    name: 顺丰单号
+    score: 0.7
+  context:
+  - 快递
+  - 单号
+  - 物流
+  - 运单
+  - express
+  enabled: true
+- name: 发票号码
+  entity_type: INVOICE_NUMBER
+  patterns:
+  - regex: (?<![0-9])[0-9]{8,12}(?![0-9])
+    name: 发票号码
+    score: 0.5
+  context:
+  - 发票
+  - 发票号
+  - 发票代码
+  - invoice
+  enabled: true
+- name: 统一社会信用代码
+  entity_type: UNIFIED_SOCIAL_CREDIT_CODE
+  patterns:
+  - regex: (?<![A-Z0-9])[0-9A-Z]{18}(?![A-Z0-9])
+    name: 18位统一代码
+    score: 0.6
+  context:
+  - 社会信用代码
+  - 统一代码
+  - 营业执照
+  - 企业代码
+  enabled: true
+- name: 内网IP段
+  entity_type: INTERNAL_IP
+  patterns:
+  - regex: (?:10\.\d{1,3}\.\d{1,3}\.\d{1,3}|172\.(?:1[6-9]|2[0-9]|3[01])\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3})
+    name: 内网IP
+    score: 0.7
+  context:
+  - 内网
+  - 局域网
+  - 私网
+  - 内部网络
+  - IP
+  - IP地址
+  - 服务器
+  - 主机
+  - host
+  - server
+  - 地址
+  - address
+  - 网络
+  - network
+  - 私有地址
+  - private
+  - internal
+  enabled: true
+- name: Docker镜像凭证
+  entity_type: DOCKER_CREDENTIAL
+  patterns:
+  - regex: (?i)docker[\s_-]?(?:password|token|auth)[\s:=]+['"]?([A-Za-z0-9_\-+=/.]{20,})['"]?
+    name: Docker凭证
+    score: 0.8
+  context:
+  - docker
+  - registry
+  - harbor
+  - 镜像
+  - 容器
+  - container
+  - image
+  - 仓库
+  - repository
+  - 私有仓库
+  - 认证
+  - auth
+  - password
+  - 密码
+  - token
+  - 令牌
+  - dockerhub
+  enabled: true
+- name: Redis密码
+  entity_type: REDIS_PASSWORD
+  patterns:
+  - regex: (?i)redis[\s_-]?(?:password|pass|auth)[\s:=]+['"]?([A-Za-z0-9_\-@#$%^&*+=]{6,})['"]?
+    name: Redis密码
+    score: 0.75
+  context:
+  - redis
+  - password
+  - 密码
+  - auth
+  - 认证
+  - 缓存
+  - cache
+  - 连接
+  - connection
+  - 配置
+  - config
+  - 数据库
+  - database
+  - 内存数据库
+  - key-value
+  enabled: true

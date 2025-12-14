@@ -1,0 +1,445 @@
+# MingJing 上下文词配置
+# ================================
+# 这些上下文词用于提升敏感信息识别的准确度
+# 当文本中出现这些词时，会增加附近敏感信息的置信度
+
+context_words:
+  CN_POSTAL_CODE:
+    # 中文
+    - "邮编"
+    - "邮政编码"
+    - "编码"
+    - "邮寄"
+    - "收件"
+    # 英文
+    - "postal code"
+    - "zip code"
+    - "postcode"
+    - "zip"
+
+  DATE_TIME:
+    # 中文
+    - "时间"
+    - "日期"
+    - "年份"
+    - "月份"
+    - "时刻"
+    - "创建时间"
+    - "更新时间"
+    - "截止日期"
+    - "有效期"
+    # 英文
+    - "date"
+    - "time"
+    - "year"
+    - "month"
+    - "day"
+    - "created_at"
+    - "updated_at"
+    - "timestamp"
+
+  NRP:
+    # 中文
+    - "国籍"
+    - "民族"
+    - "宗教"
+    - "信仰"
+    - "政治面貌"
+    - "党派"
+    # 英文
+    - "nationality"
+    - "religion"
+    - "political"
+    - "party"
+
+  API_KEY:
+    # 英文
+    - "api key"
+    - "apikey"
+    - "api_key"
+    - "secret"
+    - "token"
+    - "auth"
+    - "credential"
+    # 中文
+    - "密钥"
+    - "令牌"
+    - "凭证"
+
+  CN_ID_CARD:
+    # 中文 - 正式称谓
+    - "身份证"
+    - "身份证号"
+    - "身份证号码"
+    - "居民身份证"
+    - "公民身份号码"
+    - "证件号"
+    - "证件号码"
+    - "证件编号"
+    - "身份号码"
+    - "身份编号"
+    # 中文 - 口语/简称
+    - "身份"
+    - "证号"
+    - "证件"
+    - "号码"
+    # 中文 - 相关场景
+    - "持证人"
+    - "证件持有人"
+    - "本人身份"
+    - "实名认证"
+    - "实名制"
+    - "身份验证"
+    - "身份核验"
+    - "身份信息"
+    - "个人身份"
+    # 英文
+    - "id card"
+    - "id number"
+    - "id no"
+    - "id code"
+    - "identification"
+    - "identification number"
+    - "identity"
+    - "identity card"
+    - "identity number"
+    - "citizen id"
+    - "national id"
+    - "personal id"
+    - "resident id"
+    # 拼音缩写
+    - "sfz"
+    - "sfzh"
+    - "zjh"
+    - "zjhm"
+
+  CN_PHONE:
+    # 中文
+    - "电话"
+    - "手机"
+    - "手机号"
+    - "手机号码"
+    - "电话号码"
+    - "联系电话"
+    - "联系方式"
+    - "移动电话"
+    - "座机"
+    - "固话"
+    - "固定电话"
+    - "来电"
+    - "拨打"
+    - "致电"
+    - "咨询电话"
+    - "客服电话"
+    - "服务热线"
+    - "热线"
+    # 英文
+    - "phone"
+    - "mobile"
+    - "telephone"
+    - "tel"
+    - "cell"
+    - "contact"
+    # 拼音
+    - "dianhua"
+    - "shouji"
+
+  CN_BANK_CARD:
+    # 中文
+    - "银行卡"
+    - "银行卡号"
+    - "卡号"
+    - "账号"
+    - "账户"
+    - "储蓄卡"
+    - "信用卡"
+    - "借记卡"
+    - "贷记卡"
+    - "银联卡"
+    - "工资卡"
+    - "收款账号"
+    - "付款账号"
+    - "转账账号"
+    - "开户行"
+    - "开户银行"
+    # 英文
+    - "bank card"
+    - "card number"
+    - "account"
+    - "debit card"
+    - "credit card"
+
+  CN_EMAIL:
+    # 中文
+    - "邮箱"
+    - "邮件"
+    - "电子邮箱"
+    - "电子邮件"
+    - "邮箱地址"
+    - "邮件地址"
+    - "联系邮箱"
+    - "工作邮箱"
+    - "个人邮箱"
+    - "企业邮箱"
+    # 英文
+    - "email"
+    - "e-mail"
+    - "mail"
+    - "mailbox"
+
+  CN_PASSPORT:
+    # 中文
+    - "护照"
+    - "护照号"
+    - "护照号码"
+    - "护照编号"
+    - "旅行证件"
+    - "出入境"
+    - "签证"
+    # 英文
+    - "passport"
+    - "passport number"
+    - "passport no"
+
+  CN_DRIVER_LICENSE:
+    # 中文
+    - "驾驶证"
+    - "驾照"
+    - "驾驶证号"
+    - "驾照号"
+    - "机动车驾驶证"
+    - "驾驶执照"
+    - "驾驶员"
+    - "准驾车型"
+    # 英文
+    - "driver license"
+    - "driving license"
+    - "driver's license"
+
+  CN_MILITARY_ID:
+    # 中文
+    - "军人证"
+    - "军官证"
+    - "士兵证"
+    - "军人身份"
+    - "军官身份"
+    - "部队"
+    - "军队"
+
+  CN_SOCIAL_CREDIT_CODE:
+    # 中文
+    - "社会信用代码"
+    - "统一社会信用代码"
+    - "统一代码"
+    - "信用代码"
+    - "营业执照"
+    - "企业代码"
+    - "组织机构代码"
+    - "工商注册号"
+    - "注册号"
+    # 英文
+    - "credit code"
+    - "business license"
+
+  CN_MEDICAL_LICENSE:
+    # 中文
+    - "执业证"
+    - "医师证"
+    - "执业证号"
+    - "医师执业证"
+    - "执业医师"
+    - "执业资格"
+    - "医师资格"
+
+  CN_VEHICLE_PLATE:
+    # 中文
+    - "车牌"
+    - "车牌号"
+    - "牌照"
+    - "车辆号牌"
+    - "机动车号牌"
+    - "车辆"
+    - "汽车"
+    # 英文
+    - "plate"
+    - "license plate"
+    - "vehicle"
+
+  CN_IP_ADDRESS:
+    # 中文
+    - "IP"
+    - "IP地址"
+    - "服务器"
+    - "主机"
+    - "网络地址"
+    - "内网"
+    - "外网"
+    - "公网"
+    - "私网"
+    # 英文
+    - "ip address"
+    - "server"
+    - "host"
+    - "network"
+
+  CN_MAC_ADDRESS:
+    # 中文
+    - "MAC"
+    - "MAC地址"
+    - "物理地址"
+    - "网卡地址"
+    - "硬件地址"
+    # 英文
+    - "mac address"
+    - "hardware address"
+    - "physical address"
+
+  CN_JWT:
+    # 中文
+    - "令牌"
+    - "认证"
+    - "授权"
+    - "登录凭证"
+    - "访问令牌"
+    # 英文
+    - "token"
+    - "jwt"
+    - "bearer"
+    - "authorization"
+    - "access token"
+    - "refresh token"
+
+  CN_CLOUD_KEY:
+    # 中文
+    - "密钥"
+    - "访问密钥"
+    - "云服务"
+    - "云平台"
+    - "阿里云"
+    - "腾讯云"
+    - "华为云"
+    # 英文
+    - "key"
+    - "secret"
+    - "access key"
+    - "secret key"
+    - "api key"
+    - "aws"
+    - "azure"
+    - "gcp"
+
+  CN_WECHAT:
+    # 中文
+    - "微信"
+    - "微信号"
+    - "企业微信"
+    - "公众号"
+    - "小程序"
+    # 英文
+    - "wechat"
+    - "weixin"
+
+  CN_JDBC:
+    # 中文
+    - "数据库"
+    - "连接"
+    - "连接字符串"
+    - "数据源"
+    # 英文
+    - "jdbc"
+    - "connection"
+    - "database"
+    - "datasource"
+    - "mysql"
+    - "postgresql"
+    - "oracle"
+    - "sqlserver"
+
+  CN_SENSITIVE_FIELD:
+    # 中文
+    - "密码"
+    - "口令"
+    - "凭证"
+    - "秘钥"
+    # 英文
+    - "password"
+    - "passwd"
+    - "pwd"
+    - "secret"
+    - "token"
+    - "key"
+    - "credential"
+    - "private"
+
+  PERSON:
+    # 中文
+    - "姓名"
+    - "名字"
+    - "本人"
+    - "用户"
+    - "客户"
+    - "员工"
+    - "先生"
+    - "女士"
+    - "联系人"
+    - "负责人"
+    - "经办人"
+    - "申请人"
+    - "持卡人"
+    - "收件人"
+    - "寄件人"
+    # 英文
+    - "name"
+    - "user"
+    - "customer"
+    - "contact"
+
+  LOCATION:
+    # 中文
+    - "地址"
+    - "住址"
+    - "居住地"
+    - "户籍"
+    - "籍贯"
+    - "所在地"
+    - "位置"
+    - "省"
+    - "市"
+    - "区"
+    - "县"
+    - "街道"
+    - "路"
+    - "号"
+    - "楼"
+    - "室"
+    - "小区"
+    - "社区"
+    # 英文
+    - "address"
+    - "location"
+    - "city"
+    - "province"
+
+  ORGANIZATION:
+    # 中文
+    - "公司"
+    - "企业"
+    - "单位"
+    - "机构"
+    - "组织"
+    - "部门"
+    - "集团"
+    - "有限公司"
+    - "股份"
+    - "银行"
+    - "医院"
+    - "学校"
+    - "大学"
+    # 英文
+    - "company"
+    - "corporation"
+    - "organization"
+    - "department"
+    - "bank"
+    - "hospital"
+    - "university"

@@ -1,0 +1,119 @@
+# This file contains sentences with relevant context words that should be resulting in a better score
+# Each item has the following structure:
+#
+# 1) Entity type
+# 2) Sentence
+
+IP_ADDRESS
+my ip: 192.168.0.1
+
+US_SSN
+my ssn is 078-051121
+
+US_SSN
+my social security number is 078051120
+
+US_SSN
+my social security number is 078-05-1121
+
+US_SSN
+my social security number is 078051121
+
+US_SSN
+my ssns is 078-05-1121
+
+US_SSN
+my ssid is 078-05-1121
+
+PHONE_NUMBER
+my phone number is (425) 882-9090
+
+PHONE_NUMBER
+my phone number is:(425) 882-9090
+
+PHONE_NUMBER
+my phone number is 425 8829090
+
+PHONE_NUMBER
+try one of these phones 052 5552606 074-7111234
+
+PHONE_NUMBER
+my phone number is 4258829090
+
+US_ITIN
+my itin: 911701234
+
+US_ITIN
+my itin is 911-70-1234
+
+US_ITIN
+my taxpayer id is 911-701234 91170-1234
+
+US_DRIVER_LICENSE
+my driver license number: AA1B2**9ABA7
+
+US_DRIVER_LICENSE
+my driver license is H12234567
+
+US_DRIVER_LICENSE
+my driver license is: 1234567901234
+
+# Verify Upper case works
+US_DRIVER_LICENSE
+my DRIVER LICENSE is: 7774567901234
+
+# Verify Mixed case works
+US_DRIVER_LICENSE
+my DrIvEr LiCeNsE is: 7774567901234
+
+ABA_ROUTING_NUMBER
+routing number is: 101205681
+
+US_BANK_NUMBER
+my bank account number is 912803456
+
+US_BANK_NUMBER
+my banking account number is 912803456
+
+US_PASSPORT
+my passport number is 912803456
+
+# Verify that substring is also found (e.g. forgotten spaces)
+US_PASSPORT
+my passportnumber is 912803456
+
+US_PASSPORT
+my passport number is 912803456 and now there are a lot a lot a lot a lot a lot a lot a lot a lot a lot a lot a lot a lot a lot a lot a lot a lot a lot of other words
+
+# Verify that within the max window size (currently 5) the context is picked up
+US_PASSPORT
+my passport number is hi bye hello 912803456
+
+# Verify adjacent context words
+US_PASSPORT
+mypassportnumberis912803456
+
+# Verify SG NRIC/FIN context words
+FIN
+Special NRIC numbers e.g. S0000001I that are numerically significant have been issued to notable people Yusof bin Ishak, first President of Singapore
+
+# Verify SG NRIC/FIN mixed case (e.g. lower case )
+FIN
+my fin is g3300299L
+
+#Verify IN PAN in adjacent context words
+IN_PAN
+my pan is DJPMS1234Z amongst so many other things
+
+#Verify IN PAN context words
+IN_PAN
+Typical tax filing identifier is known as PAN in India also known as permanent account number
+
+
+#Verify IN PAN mixed case
+IN_PAN
+my PAN number is DJPMS1234Z
+
+#Verify IN PASSPORT context words
+IN_PASSPORT
+my passport number is T1234567. Indian Passport number is of 8 characters long, always starting with a capital letter.

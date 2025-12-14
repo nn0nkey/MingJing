@@ -1,0 +1,383 @@
+# MingJing 明镜 - 系统配置文件
+# ================================
+
+# 系统基础配置
+system:
+  name: "MingJing"
+  version: "1.0.0"
+  language: "zh"
+  debug: false
+  log_level: "INFO"
+
+# NLP引擎配置
+nlp_engine:
+  # 引擎类型: spacy / stanza / transformers
+  type: "spacy"
+  # 模型名称
+  model: "zh_core_web_md"
+  # 默认置信分数
+  default_score: 0.4
+  # 实体映射
+  entity_mapping:
+    PER: "PERSON"
+    LOC: "LOCATION"
+    GPE: "LOCATION"
+    ORG: "ORGANIZATION"
+    DATE: "DATE_TIME"
+    TIME: "DATE_TIME"
+  # 忽略的标签
+  labels_to_ignore:
+    - "CARDINAL"
+    - "ORDINAL"
+    - "MONEY"
+    - "PERCENT"
+    - "QUANTITY"
+
+# LLM验证配置
+llm_verifier:
+  # 是否启用
+  enabled: true
+  # 模式: api / local / mock
+  mode: "mock"
+  # 分数阈值（低于此值触发LLM验证）
+  score_threshold: 0.5
+  # 上下文窗口大小（前后各多少字符）
+  context_window: 30
+  # API配置（mode=api时使用）
+  api:
+    base_url: "https://api.openai.com/v1"
+    model: "gpt-3.5-turbo"
+    timeout: 30
+    # api_key 从环境变量读取: MINGJING_LLM_API_KEY
+  # 本地模型配置（mode=local时使用）
+  local:
+    model_path: ""
+    device: "auto"
+    max_new_tokens: 200
+
+# 置信度阈值配置
+scoring:
+  # 高置信度阈值（直接确认）
+  high_confidence: 0.5
+  # 低置信度阈值（丢弃）
+  low_confidence: 0.0
+  # 各类型默认分数
+  type_scores:
+    regex_match: 0.4
+    nlp_match: 0.4
+    checksum_valid: 1.0
+    context_boost: 0.1
+
+# 识别器配置
+recognizers:
+  # 启用的识别器列表（为空则启用所有）
+  enabled: []
+  # 禁用的识别器列表
+  disabled: []
+  # 各识别器单独配置
+  settings:
+    # ========== 个人身份类 ==========
+    CN_ID_CARD:
+      enabled: true
+      base_score: 0.5
+      description: "身份证号"
+    CN_PASSPORT:
+      enabled: true
+      base_score: 0.5
+      description: "护照号"
+    CN_DRIVER_LICENSE:
+      enabled: true
+      base_score: 0.5
+      description: "驾驶证号"
+    CN_MILITARY_ID:
+      enabled: true
+      base_score: 0.5
+      description: "军人证号"
+    
+    # ========== 联系方式类 ==========
+    CN_PHONE:
+      enabled: true
+      base_score: 0.55
+      description: "手机号/电话"
+    CN_EMAIL:
+      enabled: true
+      base_score: 0.4
+      description: "电子邮箱"
+    CN_WECHAT:
+      enabled: true
+      base_score: 0.4
+      description: "微信/企业微信ID"
+    
+    # ========== 金融信息类 ==========
+    CN_BANK_CARD:
+      enabled: true
+      base_score: 0.5
+      description: "银行卡号"
+    
+    # ========== 企业信息类 ==========
+    CN_SOCIAL_CREDIT_CODE:
+      enabled: true
+      base_score: 0.5
+      description: "统一社会信用代码"
+    
+    # ========== 医疗信息类 ==========
+    CN_MEDICAL_LICENSE:
+      enabled: true
+      base_score: 0.5
+      description: "医师执业证号"
+    
+    # ========== 地址信息类 ==========
+    CN_POSTAL_CODE:
+      enabled: true
+      base_score: 0.4
+      description: "邮政编码"
+    CN_VEHICLE_PLATE:
+      enabled: true
+      base_score: 0.5
+      description: "车牌号"
+    
+    # ========== 网络信息类 ==========
+    CN_IP_ADDRESS:
+      enabled: true
+      base_score: 0.4
+      description: "IP地址"
+    CN_MAC_ADDRESS:
+      enabled: true
+      base_score: 0.4
+      description: "MAC地址"
+    CN_JDBC:
+      enabled: true
+      base_score: 0.6
+      description: "JDBC连接字符串"
+    
+    # ========== 认证信息类 ==========
+    CN_JWT:
+      enabled: true
+      base_score: 0.7
+      description: "JWT Token"
+    CN_CLOUD_KEY:
+      enabled: true
+      base_score: 0.8
+      description: "云服务密钥(AWS/Azure/GCP/阿里云等)"
+    CN_SENSITIVE_FIELD:
+      enabled: true
+      base_score: 0.5
+      description: "敏感字段(password/secret/token等)"
+    API_KEY:
+      enabled: true
+      base_score: 0.7
+      description: "API密钥"
+    PRIVATE_KEY:
+      enabled: true
+      base_score: 0.95
+      description: "私钥内容"
+    DB_CONNECTION:
+      enabled: true
+      base_score: 0.8
+      description: "数据库连接字符串"
+    
+    # ========== NLP识别类 ==========
+    PERSON:
+      enabled: true
+      base_score: 0.4
+      description: "人名"
+    LOCATION:
+      enabled: true
+      base_score: 0.4
+      description: "地名/地址"
+    ORGANIZATION:
+      enabled: true
+      base_score: 0.4
+      description: "组织机构"
+
+# 上下文词配置
+context_words:
+  PERSON:
+    - "姓名"
+    - "名字"
+    - "本人"
+    - "用户"
+    - "客户"
+    - "员工"
+    - "先生"
+    - "女士"
+    - "联系人"
+    - "负责人"
+  LOCATION:
+    - "地址"
+    - "住址"
+    - "居住地"
+    - "户籍"
+    - "籍贯"
+    - "所在地"
+    - "位置"
+    - "省"
+    - "市"
+    - "区"
+    - "县"
+  ORGANIZATION:
+    - "公司"
+    - "企业"
+    - "单位"
+    - "机构"
+    - "组织"
+    - "部门"
+    - "集团"
+  CN_ID_CARD:
+    - "身份证"
+    - "证件号"
+    - "身份证号"
+    - "证件号码"
+  CN_PHONE:
+    - "电话"
+    - "手机"
+    - "联系方式"
+    - "手机号"
+    - "电话号码"
+  CN_BANK_CARD:
+    - "银行卡"
+    - "卡号"
+    - "账号"
+    - "储蓄卡"
+    - "信用卡"
+  CN_EMAIL:
+    - "邮箱"
+    - "邮件"
+    - "电子邮箱"
+    - "email"
+  CN_PASSPORT:
+    - "护照"
+    - "护照号"
+    - "护照号码"
+  CN_DRIVER_LICENSE:
+    - "驾驶证"
+    - "驾照"
+    - "驾驶证号"
+  CN_MILITARY_ID:
+    - "军人证"
+    - "军官证"
+    - "士兵证"
+  CN_SOCIAL_CREDIT_CODE:
+    - "社会信用代码"
+    - "统一代码"
+    - "营业执照"
+    - "企业代码"
+  CN_MEDICAL_LICENSE:
+    - "执业证"
+    - "医师证"
+    - "执业证号"
+  CN_VEHICLE_PLATE:
+    - "车牌"
+    - "车牌号"
+    - "牌照"
+  CN_IP_ADDRESS:
+    - "IP"
+    - "ip地址"
+    - "服务器"
+    - "主机"
+  CN_MAC_ADDRESS:
+    - "MAC"
+    - "mac地址"
+    - "物理地址"
+  CN_JWT:
+    - "token"
+    - "jwt"
+    - "令牌"
+    - "认证"
+  CN_CLOUD_KEY:
+    - "密钥"
+    - "key"
+    - "secret"
+    - "access"
+    - "云服务"
+  CN_WECHAT:
+    - "微信"
+    - "企业微信"
+    - "微信号"
+  CN_JDBC:
+    - "jdbc"
+    - "数据库"
+    - "连接"
+    - "connection"
+  CN_SENSITIVE_FIELD:
+    - "password"
+    - "密码"
+    - "secret"
+    - "token"
+    - "key"
+
+# 文件处理配置
+file_processing:
+  # 支持的文件类型
+  supported_formats:
+    - ".txt"
+    - ".csv"
+    - ".json"
+    - ".xml"
+    - ".html"
+    - ".md"
+    - ".log"
+    - ".pdf"
+    - ".docx"
+    - ".xlsx"
+    - ".pptx"
+  # 压缩包格式
+  archive_formats:
+    - ".zip"
+    - ".rar"
+    - ".7z"
+    - ".tar"
+    - ".gz"
+  # 最大文件大小（MB）
+  max_file_size: 100
+  # 大文件分片大小（MB）
+  chunk_size: 10
+  # 临时文件目录
+  temp_dir: "/tmp/mingjing"
+  # 是否递归解压
+  recursive_extract: true
+
+# 性能配置
+performance:
+  # 批处理大小
+  batch_size: 100
+  # 最大并发数
+  max_workers: 4
+  # 缓存配置
+  cache:
+    enabled: true
+    ttl: 3600
+    max_size: 1000
+
+# 报告配置
+report:
+  # 输出目录
+  output_dir: "./reports"
+  # 支持的格式
+  formats:
+    - "json"
+    - "html"
+    - "pdf"
+    - "excel"
+  # 风险等级定义
+  risk_levels:
+    critical:
+      min_count: 10
+      types:
+        - "CN_ID_CARD"
+        - "CN_BANK_CARD"
+    high:
+      min_count: 5
+      types:
+        - "CN_PHONE"
+        - "CN_PASSPORT"
+    medium:
+      min_count: 3
+      types:
+        - "CN_EMAIL"
+        - "PERSON"
+    low:
+      min_count: 1
+      types:
+        - "LOCATION"
+        - "ORGANIZATION"

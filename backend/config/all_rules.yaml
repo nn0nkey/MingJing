@@ -1,0 +1,774 @@
+rules:
+- name: CN_ID_CARD
+  entity_type: CN_ID_CARD
+  description: 身份证号
+  category: 个人身份
+  source: builtin
+  enabled: true
+  patterns:
+  - name: CN ID Card (High)
+    regex: (?<![0-9])[1-6]\d{5}(?:19|20)\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])\d{3}[\dXx](?![0-9])
+    score: 0.5
+  - name: CN ID Card (Medium)
+    regex: (?<![0-9])[1-9]\d{5}(?:19|20)\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])\d{3}[\dXx](?![0-9])
+    score: 0.4
+  - name: CN ID Card (Low)
+    regex: (?<![0-9])\d{17}[\dXx](?![0-9])
+    score: 0.25
+  context:
+  - 身份证
+  - 身份证号
+  - 身份证号码
+  - 居民身份证
+  - 公民身份号码
+  - 证件号
+  - 证件号码
+  - 证件编号
+  - 身份号码
+  - 身份编号
+  - 身份
+  - 证号
+  - 证件
+  - 号码
+  - 持证人
+  - 证件持有人
+  - 本人身份
+  - 实名认证
+  - 实名制
+  - 身份验证
+  - 身份核验
+  - 身份信息
+  - 个人身份
+  - id card
+  - id number
+  - id no
+  - id code
+  - identification
+  - identification number
+  - identity
+  - identity card
+  - identity number
+  - citizen id
+  - national id
+  - personal id
+  - resident id
+  - sfz
+  - sfzh
+  - zjh
+  - zjhm
+  validator: cn_id_card
+- name: CN_PASSPORT
+  entity_type: CN_PASSPORT
+  description: 护照号
+  category: 个人身份
+  source: builtin
+  enabled: true
+  patterns:
+  - name: CN Passport (Standard)
+    regex: (?<![A-Za-z0-9])[EeGgDdSsPpHhCc]\d{8}(?![0-9])
+    score: 0.5
+  - name: CN Passport (Old)
+    regex: (?<![A-Za-z0-9])1[45]\d{7}(?![0-9])
+    score: 0.4
+  context:
+  - 护照
+  - 护照号
+  - 护照号码
+  - 护照编号
+  - 旅行证件
+  - 出入境
+  - 签证
+  - passport
+  - passport number
+  - passport no
+  validator: cn_passport
+- name: CN_DRIVER_LICENSE
+  entity_type: CN_DRIVER_LICENSE
+  description: 驾驶证号
+  category: 个人身份
+  source: builtin
+  enabled: true
+  patterns:
+  - name: CN Driver License (Standard)
+    regex: (?<![0-9])[1-6]\d{5}(?:19|20)\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])\d{3}[\dXx](?![0-9])
+    score: 0.45
+  context:
+  - 驾驶证
+  - 驾照
+  - 驾驶证号
+  - 驾照号
+  - 机动车驾驶证
+  - 驾驶执照
+  - 驾驶员
+  - 准驾车型
+  - driver license
+  - driving license
+  - driver's license
+  validator: cn_driver_license
+- name: CN_MILITARY_ID
+  entity_type: CN_MILITARY_ID
+  description: 军人证号
+  category: 个人身份
+  source: builtin
+  enabled: true
+  patterns:
+  - name: CN Military ID (Officer)
+    regex: (?<![A-Za-z0-9])军字第?\d{6,8}号?(?![0-9])
+    score: 0.6
+  - name: CN Military ID (Soldier)
+    regex: (?<![A-Za-z0-9])士字第?\d{6,8}号?(?![0-9])
+    score: 0.6
+  context:
+  - 军人证
+  - 军官证
+  - 士兵证
+  - 军人身份
+  - 军官身份
+  - 部队
+  - 军队
+  validator: null
+- name: CN_PHONE
+  entity_type: CN_PHONE
+  description: 手机号/电话
+  category: 联系方式
+  source: builtin
+  enabled: true
+  patterns:
+  - name: CN Mobile (Country Code)
+    regex: (?:(?:\+|00)86[-\s]?)1[3-9]\d{9}(?![0-9])
+    score: 0.75
+  - name: CN Mobile (High)
+    regex: (?<![0-9])1(?:3[0-9]|4[5-9]|5[0-35-9]|6[2567]|7[0-8]|8[0-9]|9[0-35-9])\d{8}(?![0-9])
+    score: 0.55
+  - name: CN Mobile (Separated)
+    regex: (?<![0-9])1[3-9]\d[-\s]\d{4}[-\s]\d{4}(?![0-9])
+    score: 0.5
+  - name: CN Landline (High)
+    regex: (?<![0-9])0(?:10|2[0-9]|[3-9]\d{2})[-\s]?\d{7,8}(?![0-9])
+    score: 0.5
+  - name: CN Service Number
+    regex: (?<![0-9])(?:400|800)[-\s]?\d{3}[-\s]?\d{4}(?![0-9])
+    score: 0.6
+  - name: CN Mobile (Medium)
+    regex: (?<![0-9])1[3-9]\d{9}(?![0-9])
+    score: 0.4
+  context:
+  - 电话
+  - 手机
+  - 手机号
+  - 手机号码
+  - 电话号码
+  - 联系电话
+  - 联系方式
+  - 移动电话
+  - 座机
+  - 固话
+  - 固定电话
+  - 来电
+  - 拨打
+  - 致电
+  - 咨询电话
+  - 客服电话
+  - 服务热线
+  - 热线
+  - phone
+  - mobile
+  - telephone
+  - tel
+  - cell
+  - contact
+  - dianhua
+  - shouji
+  validator: cn_phone
+- name: CN_EMAIL
+  entity_type: CN_EMAIL
+  description: 电子邮箱
+  category: 联系方式
+  source: builtin
+  enabled: true
+  patterns:
+  - name: Email QQ
+    regex: (?<![A-Za-z0-9])[0-9]{5,11}@qq\.com(?![A-Za-z0-9])
+    score: 0.7
+  - name: Email 163
+    regex: (?<![A-Za-z0-9._%+-])[A-Za-z0-9._%+-]+@(?:163|126)\.com(?![A-Za-z0-9])
+    score: 0.65
+  - name: Email Alibaba
+    regex: (?<![A-Za-z0-9._%+-])[A-Za-z0-9._%+-]+@(?:aliyun|alibaba|taobao)\.com(?![A-Za-z0-9])
+    score: 0.65
+  - name: Email Standard
+    regex: (?<![A-Za-z0-9._%+-])[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}(?![A-Za-z0-9._%+-])
+    score: 0.4
+  context:
+  - 邮箱
+  - 邮件
+  - 电子邮箱
+  - 电子邮件
+  - 邮箱地址
+  - 邮件地址
+  - 联系邮箱
+  - 工作邮箱
+  - 个人邮箱
+  - 企业邮箱
+  - email
+  - e-mail
+  - mail
+  - mailbox
+  validator: cn_email
+- name: CN_WECHAT_ID
+  entity_type: CN_WECHAT_ID
+  description: 微信号
+  category: 联系方式
+  source: builtin
+  enabled: true
+  patterns:
+  - name: WeChat ID
+    regex: (?<![A-Za-z0-9_-])[a-zA-Z][a-zA-Z0-9_-]{5,19}(?![A-Za-z0-9_-])
+    score: 0.3
+  context:
+  - 微信
+  - 微信号
+  - 企业微信
+  - wechat
+  - weixin
+  validator: null
+- name: CN_BANK_CARD
+  entity_type: CN_BANK_CARD
+  description: 银行卡号
+  category: 金融信息
+  source: builtin
+  enabled: true
+  patterns:
+  - name: CN Bank Card UnionPay 16
+    regex: (?<![0-9])62[0-9]{14}(?![0-9])
+    score: 0.5
+  - name: CN Bank Card UnionPay 19
+    regex: (?<![0-9])62[0-9]{17}(?![0-9])
+    score: 0.5
+  - name: CN Bank Card Visa
+    regex: (?<![0-9])4[0-9]{15}(?![0-9])
+    score: 0.45
+  - name: CN Bank Card MasterCard
+    regex: (?<![0-9])(?:5[1-5][0-9]{14}|2(?:2[2-9][0-9]{12}|[3-6][0-9]{13}|7[01][0-9]{12}|720[0-9]{12}))(?![0-9])
+    score: 0.45
+  - name: CN Bank Card Separated 16
+    regex: (?<![0-9])[3-6][0-9]{3}[-\s][0-9]{4}[-\s][0-9]{4}[-\s][0-9]{4}(?![0-9])
+    score: 0.45
+  - name: CN Bank Card Generic
+    regex: (?<![0-9])[3-6][0-9]{15,18}(?![0-9])
+    score: 0.3
+  context:
+  - 银行卡
+  - 银行卡号
+  - 卡号
+  - 账号
+  - 账户
+  - 储蓄卡
+  - 信用卡
+  - 借记卡
+  - 贷记卡
+  - 银联卡
+  - 工资卡
+  - 收款账号
+  - 付款账号
+  - 转账账号
+  - 开户行
+  - 开户银行
+  - bank card
+  - card number
+  - account
+  - debit card
+  - credit card
+  validator: cn_bank_card
+- name: CN_SOCIAL_CREDIT_CODE
+  entity_type: CN_SOCIAL_CREDIT_CODE
+  description: 统一社会信用代码
+  category: 企业信息
+  source: builtin
+  enabled: true
+  patterns:
+  - name: Social Credit Code (Standard)
+    regex: (?<![A-Za-z0-9])[0-9A-HJ-NPQRTUWXY]{2}\d{6}[0-9A-HJ-NPQRTUWXY]{10}(?![A-Za-z0-9])
+    score: 0.6
+  context:
+  - 社会信用代码
+  - 统一社会信用代码
+  - 统一代码
+  - 信用代码
+  - 营业执照
+  - 企业代码
+  - 组织机构代码
+  - 工商注册号
+  - 注册号
+  - credit code
+  - business license
+  validator: cn_social_credit_code
+- name: CN_MEDICAL_LICENSE
+  entity_type: CN_MEDICAL_LICENSE
+  description: 医师执业证号
+  category: 医疗信息
+  source: builtin
+  enabled: true
+  patterns:
+  - name: Medical License (Standard)
+    regex: (?<![0-9])1(?:10|[2-6]\d)\d{12}(?![0-9])
+    score: 0.5
+  context:
+  - 执业证
+  - 医师证
+  - 执业证号
+  - 医师执业证
+  - 执业医师
+  - 执业资格
+  - 医师资格
+  validator: null
+- name: CN_POSTAL_CODE
+  entity_type: CN_POSTAL_CODE
+  description: 邮政编码
+  category: 地址信息
+  source: builtin
+  enabled: true
+  patterns:
+  - name: Postal Code (Standard)
+    regex: (?<![0-9])[1-9]\d{5}(?![0-9])
+    score: 0.3
+  context:
+  - 邮编
+  - 邮政编码
+  - 编码
+  - 邮寄
+  - 收件
+  - postal code
+  - zip code
+  - postcode
+  - zip
+  validator: null
+- name: CN_VEHICLE_PLATE
+  entity_type: CN_VEHICLE_PLATE
+  description: 车牌号
+  category: 地址信息
+  source: builtin
+  enabled: true
+  patterns:
+  - name: Vehicle Plate (Standard)
+    regex: (?<![A-Za-z\u4e00-\u9fa5])[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-HJ-NP-Z][A-HJ-NP-Z0-9]{4,5}[A-HJ-NP-Z0-9挂学警港澳](?![A-Za-z0-9])
+    score: 0.6
+  - name: Vehicle Plate (New Energy)
+    regex: (?<![A-Za-z\u4e00-\u9fa5])[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-HJ-NP-Z][DF][A-HJ-NP-Z0-9]{5}(?![A-Za-z0-9])
+    score: 0.65
+  context:
+  - 车牌
+  - 车牌号
+  - 牌照
+  - 车辆号牌
+  - 机动车号牌
+  - 车辆
+  - 汽车
+  - plate
+  - license plate
+  - vehicle
+  validator: cn_vehicle_plate
+- name: CN_IP_ADDRESS
+  entity_type: CN_IP_ADDRESS
+  description: IP地址
+  category: 网络信息
+  source: builtin
+  enabled: true
+  patterns:
+  - name: IPv4 Address
+    regex: (?<![0-9.])(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?![0-9.])
+    score: 0.4
+  - name: IPv6 Address
+    regex: (?<![A-Fa-f0-9:])(?:[A-Fa-f0-9]{1,4}:){7}[A-Fa-f0-9]{1,4}(?![A-Fa-f0-9:])
+    score: 0.5
+  context:
+  - IP
+  - IP地址
+  - 服务器
+  - 主机
+  - 网络地址
+  - 内网
+  - 外网
+  - 公网
+  - 私网
+  - ip address
+  - server
+  - host
+  - network
+  validator: cn_ip_address
+- name: CN_MAC_ADDRESS
+  entity_type: CN_MAC_ADDRESS
+  description: MAC地址
+  category: 网络信息
+  source: builtin
+  enabled: true
+  patterns:
+  - name: MAC Address (Colon)
+    regex: (?<![A-Fa-f0-9:-])(?:[A-Fa-f0-9]{2}:){5}[A-Fa-f0-9]{2}(?![A-Fa-f0-9:-])
+    score: 0.5
+  - name: MAC Address (Hyphen)
+    regex: (?<![A-Fa-f0-9:-])(?:[A-Fa-f0-9]{2}-){5}[A-Fa-f0-9]{2}(?![A-Fa-f0-9:-])
+    score: 0.5
+  context:
+  - MAC
+  - MAC地址
+  - 物理地址
+  - 网卡地址
+  - 硬件地址
+  - mac address
+  - hardware address
+  - physical address
+  validator: null
+- name: CN_JDBC_CONNECTION
+  entity_type: CN_JDBC_CONNECTION
+  description: JDBC连接字符串
+  category: 网络信息
+  source: builtin
+  enabled: true
+  patterns:
+  - name: JDBC MySQL
+    regex: jdbc:mysql://[^\s"'<>]+(?::\d+)?/[^\s"'<>?]+
+    score: 0.7
+  - name: JDBC PostgreSQL
+    regex: jdbc:postgresql://[^\s"'<>]+(?::\d+)?/[^\s"'<>?]+
+    score: 0.7
+  - name: JDBC Oracle
+    regex: jdbc:oracle:thin:@[^\s"'<>]+
+    score: 0.7
+  - name: JDBC SQLServer
+    regex: jdbc:sqlserver://[^\s"'<>]+(?:;[^\s"'<>]+)*
+    score: 0.7
+  context:
+  - 数据库
+  - 连接
+  - 连接字符串
+  - jdbc
+  - connection
+  - database
+  validator: null
+- name: CN_JWT
+  entity_type: CN_JWT
+  description: JWT Token
+  category: 认证信息
+  source: builtin
+  enabled: true
+  patterns:
+  - name: JWT Token
+    regex: eyJ[A-Za-z0-9_-]*\.eyJ[A-Za-z0-9_-]*\.[A-Za-z0-9_-]+
+    score: 0.8
+  context:
+  - 令牌
+  - 认证
+  - 授权
+  - 登录凭证
+  - 访问令牌
+  - token
+  - jwt
+  - bearer
+  - authorization
+  - access token
+  - refresh token
+  validator: null
+- name: CN_CLOUD_KEY
+  entity_type: CN_CLOUD_KEY
+  description: 云服务密钥
+  category: 认证信息
+  source: builtin
+  enabled: true
+  patterns:
+  - name: Aliyun AccessKey
+    regex: (?<![A-Za-z0-9])LTAI[A-Za-z0-9]{12,20}(?![A-Za-z0-9])
+    score: 0.85
+  - name: Tencent SecretId
+    regex: (?<![A-Za-z0-9])AKID[A-Za-z0-9]{13,40}(?![A-Za-z0-9])
+    score: 0.85
+  - name: AWS AccessKey
+    regex: (?<![A-Za-z0-9])AKIA[A-Z0-9]{16}(?![A-Za-z0-9])
+    score: 0.9
+  - name: Azure Key
+    regex: (?<![A-Za-z0-9])[A-Za-z0-9+/]{86}==(?![A-Za-z0-9])
+    score: 0.7
+  context:
+  - 密钥
+  - 访问密钥
+  - 云服务
+  - 云平台
+  - 阿里云
+  - 腾讯云
+  - 华为云
+  - key
+  - secret
+  - access key
+  - secret key
+  - api key
+  - aws
+  - azure
+  - gcp
+  validator: null
+- name: CN_SENSITIVE_FIELD
+  entity_type: CN_SENSITIVE_FIELD
+  description: 敏感字段
+  category: 认证信息
+  source: builtin
+  enabled: true
+  patterns:
+  - name: Password Field
+    regex: (?i)(?:password|passwd|pwd|secret|token|api_key|apikey|access_key|private_key)\s*[=:]\s*["']?[^\s"']{6,}["']?
+    score: 0.6
+  context:
+  - 密码
+  - 口令
+  - 凭证
+  - 秘钥
+  - password
+  - passwd
+  - pwd
+  - secret
+  - token
+  - key
+  - credential
+  - private
+  validator: null
+- name: PRIVATE_KEY
+  entity_type: PRIVATE_KEY
+  description: 私钥内容
+  category: 认证信息
+  source: builtin
+  enabled: true
+  patterns:
+  - name: RSA Private Key
+    regex: '-----BEGIN (?:RSA )?PRIVATE KEY-----[\s\S]+?-----END (?:RSA )?PRIVATE
+      KEY-----'
+    score: 0.95
+  - name: EC Private Key
+    regex: '-----BEGIN EC PRIVATE KEY-----[\s\S]+?-----END EC PRIVATE KEY-----'
+    score: 0.95
+  - name: OpenSSH Private Key
+    regex: '-----BEGIN OPENSSH PRIVATE KEY-----[\s\S]+?-----END OPENSSH PRIVATE KEY-----'
+    score: 0.95
+  context:
+  - 私钥
+  - 密钥
+  - private key
+  - rsa
+  - ssh
+  validator: null
+- name: GITHUB_TOKEN
+  entity_type: GITHUB_TOKEN
+  description: GitHub Token
+  category: 认证信息
+  source: custom
+  enabled: true
+  patterns:
+  - name: GitHub Personal Access Token
+    regex: ghp_[A-Za-z0-9]{36}
+    score: 0.6
+  - name: GitHub OAuth Token
+    regex: gho_[A-Za-z0-9]{36}
+    score: 0.6
+  - name: GitHub App Token
+    regex: (?:ghu|ghs)_[A-Za-z0-9]{36}
+    score: 0.6
+  context:
+  - github
+  - token
+  - access token
+  - personal access token
+  - pat
+  - api token
+  - api key
+  - authorization
+  - bearer
+  - credential
+  - secret
+  - git
+  - repository
+  - repo
+  - commit
+  - push
+  - pull
+  - clone
+  - actions
+  - workflow
+  - ci/cd
+  - pipeline
+  validator: null
+- name: SLACK_TOKEN
+  entity_type: SLACK_TOKEN
+  description: Slack Token
+  category: 认证信息
+  source: custom
+  enabled: true
+  patterns:
+  - name: Slack Bot Token
+    regex: xoxb-[0-9]{10,13}-[0-9]{10,13}-[A-Za-z0-9]{24}
+    score: 0.6
+  - name: Slack User Token
+    regex: xoxp-[0-9]{10,13}-[0-9]{10,13}-[A-Za-z0-9]{24}
+    score: 0.6
+  context:
+  - slack
+  - token
+  - bot
+  - webhook
+  - api
+  - channel
+  - workspace
+  - message
+  - notification
+  - integration
+  - app
+  - oauth
+  - authorization
+  - credential
+  - secret
+  validator: null
+- name: WECHAT_APP_SECRET
+  entity_type: WECHAT_APP_SECRET
+  description: 微信AppSecret
+  category: 认证信息
+  source: custom
+  enabled: true
+  patterns:
+  - name: WeChat AppSecret
+    regex: (?<![A-Fa-f0-9])[a-f0-9]{32}(?![A-Fa-f0-9])
+    score: 0.35
+  context:
+  - 微信
+  - appsecret
+  - app_secret
+  - wechat
+  - 小程序
+  - 公众号
+  - appid
+  - app_id
+  - miniprogram
+  - 开放平台
+  - 服务号
+  - 订阅号
+  - 企业微信
+  - 企业号
+  - weixin
+  - wx
+  - 接口
+  - api
+  - 授权
+  - access_token
+  - 密钥
+  - secret
+  - 凭证
+  validator: null
+- name: INTERNAL_IP
+  entity_type: INTERNAL_IP
+  description: 内网IP段
+  category: 网络信息
+  source: custom
+  enabled: true
+  patterns:
+  - name: Internal IP 10.x.x.x
+    regex: (?<![0-9.])10\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?![0-9.])
+    score: 0.45
+  - name: Internal IP 172.16-31.x.x
+    regex: (?<![0-9.])172\.(?:1[6-9]|2[0-9]|3[01])\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?![0-9.])
+    score: 0.45
+  - name: Internal IP 192.168.x.x
+    regex: (?<![0-9.])192\.168\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?![0-9.])
+    score: 0.45
+  context:
+  - 内网
+  - 私网
+  - 内部IP
+  - internal
+  - private
+  - 局域网
+  - lan
+  - intranet
+  - 服务器
+  - server
+  - host
+  - 主机
+  - 网段
+  - subnet
+  - 网关
+  - gateway
+  - 路由
+  - router
+  - 防火墙
+  - firewall
+  - vpc
+  - 云服务器
+  - ecs
+  - 容器
+  - container
+  - pod
+  - k8s
+  - kubernetes
+  - docker
+  validator: null
+- name: DOCKER_CREDENTIAL
+  entity_type: DOCKER_CREDENTIAL
+  description: Docker凭证
+  category: 认证信息
+  source: custom
+  enabled: true
+  patterns:
+  - name: Docker Auth Config
+    regex: (?i)docker.*auth.*[=:]\s*["']?[A-Za-z0-9+/=]{20,}["']?
+    score: 0.5
+  context:
+  - docker
+  - registry
+  - auth
+  - credential
+  - container
+  - image
+  - pull
+  - push
+  - login
+  - config
+  - daemon
+  - hub
+  - dockerhub
+  - harbor
+  - acr
+  - ecr
+  - gcr
+  - 镜像
+  - 容器
+  - 仓库
+  - 私有仓库
+  validator: null
+- name: REDIS_PASSWORD
+  entity_type: REDIS_PASSWORD
+  description: Redis密码
+  category: 认证信息
+  source: custom
+  enabled: true
+  patterns:
+  - name: Redis Auth
+    regex: (?i)redis.*(?:password|auth|requirepass)\s*[=:]\s*["']?[^\s"']{6,}["']?
+    score: 0.5
+  context:
+  - redis
+  - password
+  - auth
+  - requirepass
+  - cache
+  - 缓存
+  - 数据库
+  - database
+  - connection
+  - 连接
+  - url
+  - uri
+  - host
+  - port
+  - sentinel
+  - cluster
+  - 集群
+  - 主从
+  - master
+  - slave
+  - 密码
+  - 认证
+  validator: null

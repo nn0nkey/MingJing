@@ -1,0 +1,61 @@
+# Chinese NLP Configuration for Presidio
+# 使用 spaCy 中文模型进行命名实体识别
+
+nlp_engine_name: spacy
+models:
+  -
+    lang_code: zh
+    model_name: zh_core_web_md  # 中型模型，平衡速度和精度
+
+ner_model_configuration:
+  # spaCy中文模型的NER标签映射到Presidio实体类型
+  # 参考: https://spacy.io/models/zh
+  model_to_presidio_entity_mapping:
+    # 人名
+    PER: PERSON
+    PERSON: PERSON
+    
+    # 地名/位置
+    LOC: LOCATION
+    GPE: LOCATION      # 地缘政治实体（国家、城市、省份）
+    FAC: LOCATION      # 设施（建筑物、机场、高速公路等）
+    LOCATION: LOCATION
+    
+    # 组织机构
+    ORG: ORGANIZATION
+    ORGANIZATION: ORGANIZATION
+    
+    # 日期时间
+    DATE: DATE_TIME
+    TIME: DATE_TIME
+    
+    # 国籍/宗教/政治团体
+    NORP: NRP
+    
+    # 事件（可选）
+    EVENT: EVENT
+    
+    # 作品名称（可选）
+    WORK_OF_ART: TITLE
+    
+    # 法律法规（可选）
+    LAW: LAW
+
+  # 默认置信分数（较低，需要验证后提升）
+  default_score: 0.4
+  
+  # 低置信度实体的分数乘数（不再使用，由识别器内部验证逻辑处理）
+  low_confidence_score_multiplier: 1.0
+  
+  # 低置信度实体列表（留空，由识别器内部验证逻辑处理）
+  low_score_entity_names:
+  
+  # 忽略的标签（不作为敏感信息）
+  labels_to_ignore:
+    - CARDINAL      # 数字
+    - ORDINAL       # 序数
+    - MONEY         # 金额
+    - PERCENT       # 百分比
+    - QUANTITY      # 数量
+    - LANGUAGE      # 语言
+    - PRODUCT       # 产品（太宽泛）

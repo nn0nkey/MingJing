@@ -1,0 +1,22 @@
+nlp_engine_name: spacy
+models:
+  -
+    lang_code: he
+    model_name: he_test
+  -
+    lang_code: bn
+    model_name: bn_test
+
+ner_model_configuration:
+  model_to_presidio_entity_mapping:
+    PER: PERSON
+    PERSON: PERSON
+    NORP: NRP
+    FAC: FACILITY
+    LOC: LOCATION
+    GPE: LOCATION
+    LOCATION: LOCATION
+    ORG: ORGANIZATION
+    ORGANIZATION: ORGANIZATION
+    DATE: DATE_TIME
+    TIME: DATE_TIME
